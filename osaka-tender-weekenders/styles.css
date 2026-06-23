@@ -57,8 +57,7 @@ body {
    ========================================================= */
 .hero {
   position: relative;
-  height: 100vh;
-  height: 100dvh; /* モバイルのアドレスバー増減に追従 */
+  height: 88vh;
   min-height: 580px;
   background: radial-gradient(120% 80% at 50% 18%, #2c4a2e 0%, #21381f 55%, #18271a 100%);
   overflow: hidden;
@@ -90,6 +89,8 @@ body {
   font-size: 12px;
   color: rgba(240, 234, 214, .7);
 }
+/* 改行は2つの語句の間でのみ許可（狭い画面で「TENDERNESS FOR / THE WORLD & THE WEEKEND」） */
+.hero__catch .nobr { white-space: nowrap; }
 .hero__center {
   position: relative;
   text-align: center;
