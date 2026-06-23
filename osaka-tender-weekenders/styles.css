@@ -1,0 +1,920 @@
+/* =========================================================
+   OSAKA TENDER WEEKENDERS — Event LP
+   2026.08.09 SUN @ 大阪 北浜 雲州堂
+   ========================================================= */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+:root {
+  --primary:    #34512f;   /* 深緑（ライト面アクセント文字/hover） */
+  --accent:     #c2a14e;   /* ゴールド（主アクセント） */
+  --green-deep: #1d3120;   /* 最暗の緑（ダーク面背景） */
+  --green:      #3f5d3c;
+  --paper:      #f4efe2;   /* 紙色背景 */
+  --paper-2:    #ece4d2;   /* 紙色背景（やや濃） */
+  --card:       #fbf8f0;   /* カード背景 */
+  --ink:        #2b2a24;   /* 本文文字 */
+  --muted:      #837e70;   /* 補助文字 */
+  --line:       #ddd5c2;   /* 罫線/枠 */
+}
+
+body {
+  background: var(--green-deep);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--ink);
+}
+
+/* ---- keyframes ---- */
+@keyframes riseIn   { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes floatHint { 0%, 100% { transform: translateY(0); opacity: .7; } 50% { transform: translateY(7px); opacity: 1; } }
+
+/* ---- root column ---- */
+.lp {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--paper);
+  color: var(--ink);
+  /* 横方向のはみ出しは抑えつつ、position:sticky を壊さない（overflow:hidden だと追従しない） */
+  overflow-x: clip;
+  position: relative;
+  box-shadow: 0 0 80px rgba(0, 0, 0, .35);
+}
+
+/* ---- shared section bits ---- */
+.label {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: var(--accent);
+}
+.label--center { text-align: center; }
+
+/* =========================================================
+   1. HERO
+   ========================================================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100dvh; /* モバイルのアドレスバー増減に追従 */
+  min-height: 580px;
+  background: radial-gradient(120% 80% at 50% 18%, #2c4a2e 0%, #21381f 55%, #18271a 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 28px;
+}
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.hero__top {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease .2s forwards;
+}
+.hero__catch {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: rgba(240, 234, 214, .7);
+}
+.hero__center {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+.hero__date {
+  font-family: 'Shippori Mincho', serif;
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: riseIn .9s ease .35s forwards;
+}
+.hero__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  color: #f5f0e2;
+  font-size: 44px;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: riseIn 1s ease .5s forwards;
+}
+.hero__rule {
+  width: 54px;
+  height: 1px;
+  background: var(--accent);
+  margin: 24px auto;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.1s forwards;
+}
+.hero__sub {
+  font-family: 'Shippori Mincho', serif;
+  color: #e9e3d0;
+  font-size: 20px;
+  letter-spacing: 4px;
+  opacity: 0;
+  animation: riseIn 1s ease .75s forwards;
+}
+.hero__venue {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: rgba(233, 227, 208, .66);
+  font-size: 12.5px;
+  letter-spacing: 1.5px;
+  margin-top: 18px;
+  opacity: 0;
+  animation: fadeIn 1.2s ease 1.2s forwards;
+}
+.hero__scroll {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.5s forwards;
+}
+.hero__scroll span {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(240, 234, 214, .6);
+  animation: floatHint 2.4s ease-in-out infinite;
+}
+
+/* =========================================================
+   2. APPEAL
+   ========================================================= */
+.appeal {
+  padding: 64px 30px 56px;
+  text-align: center;
+  background: var(--paper);
+}
+.appeal .label { margin-bottom: 22px; }
+.appeal__head {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 21px;
+  line-height: 2;
+  margin: 0 0 14px;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.appeal__body {
+  font-size: 14px;
+  line-height: 2.1;
+  color: var(--muted);
+  margin: 0 auto;
+  max-width: 340px;
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   3. MAIN ACT
+   ========================================================= */
+.mainact {
+  padding: 56px 30px 60px;
+  background: var(--green-deep);
+  color: #f1ecdc;
+}
+.mainact .label { margin-bottom: 8px; }
+.mainact__name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 30px;
+  margin: 0 0 22px;
+  color: #fbf6e8;
+}
+.mainact__photo {
+  width: 100%;
+  height: 300px;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+.mainact__bio {
+  font-size: 14px;
+  line-height: 2.1;
+  color: rgba(241, 236, 220, .82);
+  margin: 0;
+  text-wrap: pretty;
+}
+.mainact__bio p { margin: 0 0 1.2em; }
+.mainact__bio p:last-child { margin-bottom: 0; }
+
+.mainact__with {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid rgba(241, 236, 220, .18);
+  border-radius: 10px;
+  margin-top: 16px;
+}
+.mainact__with-label {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+.mainact__with-band {
+  font-size: 13px;
+  color: rgba(241, 236, 220, .85);
+}
+
+.guest-box {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid rgba(241, 236, 220, .18);
+  border-radius: 12px;
+  margin-top: 32px;
+}
+.guest-box__photo {
+  flex: none;
+  width: 150px;
+  height: 150px;
+  display: block;
+  border-radius: 8px;
+}
+.guest-box__main {
+  flex: 1;
+  min-width: 0;
+}
+.guest-box__label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+.guest-box__name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 8px;
+  color: #fbf6e8;
+}
+.guest-box__bio {
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(241, 236, 220, .78);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ---- SNS buttons ---- */
+.sns {
+  display: flex;
+  gap: 11px;
+  margin-top: 22px;
+}
+.sns__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: border-color .2s ease, color .2s ease;
+}
+/* dark variant (MAIN ACT) */
+.sns--dark .sns__btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(241, 236, 220, .28);
+  color: rgba(241, 236, 220, .85);
+}
+.sns--dark .sns__btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+/* light variant (GUEST ACTS) */
+.sns--light {
+  gap: 10px;
+  margin-top: 18px;
+}
+.sns--light .sns__btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.sns--light .sns__btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* =========================================================
+   4. GUEST ACTS
+   ========================================================= */
+.guests {
+  padding: 60px 30px;
+  background: var(--paper);
+}
+.guests .label { margin-bottom: 24px; }
+.guest-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.guest-card:last-child { margin-bottom: 0; }
+.guest-card__photo {
+  width: 100%;
+  height: 210px;
+  display: block;
+}
+.guest-card__body { padding: 22px 22px 26px; }
+.guest-card__name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 21px;
+  margin: 0 0 12px;
+}
+.guest-card__bio {
+  font-size: 13.5px;
+  line-height: 2;
+  color: var(--muted);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   5. VENUE
+   ========================================================= */
+.venue {
+  padding: 60px 30px;
+  background: var(--paper-2);
+}
+.venue .label { margin-bottom: 8px; }
+.venue__name {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 27px;
+  margin: 0 0 6px;
+}
+.venue__addr {
+  font-size: 12.5px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+.venue__photo-main {
+  width: 100%;
+  height: 240px;
+  display: block;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+.venue__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.venue__photo-sub {
+  width: 100%;
+  height: 130px;
+  display: block;
+  border-radius: 8px;
+}
+.venue__body {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px;
+  line-height: 2.1;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   6. INFORMATION
+   ========================================================= */
+.info {
+  padding: 60px 30px;
+  background: var(--paper);
+}
+.info .label { margin-bottom: 24px; }
+.info__list {
+  display: flex;
+  flex-direction: column;
+}
+.info__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.info__key {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.info__val { font-size: 15px; }
+
+.ticket {
+  margin-top: 30px;
+  background: var(--green-deep);
+  border-radius: 16px;
+  padding: 26px 24px;
+  color: #f1ecdc;
+}
+.ticket__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.ticket__row--adv {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(241, 236, 220, .18);
+}
+.ticket__row--door { padding-top: 14px; }
+.ticket__key {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.ticket__price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--accent);
+}
+.ticket__price--door {
+  font-size: 22px;
+  color: #f1ecdc;
+}
+.ticket__drink {
+  font-size: 12px;
+  color: rgba(241, 236, 220, .7);
+}
+
+/* =========================================================
+   7. FAQ
+   ========================================================= */
+.faq {
+  padding: 60px 30px;
+  background: var(--paper);
+}
+.faq .label { margin-bottom: 24px; }
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.faq__item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card);
+}
+.faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+.faq__q-text {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.faq__sign {
+  flex: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--accent);
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform .25s ease;
+}
+.faq__panel {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .3s ease, opacity .3s ease;
+}
+.faq__a {
+  margin: 0;
+  padding: 0 18px 18px;
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.faq__item.is-open .faq__sign { transform: rotate(45deg); }
+.faq__item.is-open .faq__panel { max-height: 320px; opacity: 1; }
+
+/* =========================================================
+   8. RESERVATION
+   ========================================================= */
+.reserve {
+  padding: 60px 30px 64px;
+  background: var(--green-deep);
+  color: #f1ecdc;
+  text-align: center;
+}
+.reserve .label { margin-bottom: 16px; }
+.reserve__head {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  line-height: 1.9;
+  margin: 0 0 28px;
+}
+.reserve__form {
+  text-align: left;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.field { margin-bottom: 18px; }
+.field--last { margin-bottom: 26px; }
+.field__label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(241, 236, 220, .72);
+  margin-bottom: 7px;
+}
+.field__req { color: var(--accent); }
+/* 16px font-size は iOS のズーム回避目的。変更しないこと */
+.field__input,
+.field__select {
+  width: 100%;
+  padding: 14px 15px;
+  border-radius: 11px;
+  border: 1px solid rgba(241, 236, 220, .25);
+  background: rgba(255, 255, 255, .96);
+  color: #2b2a24;
+  font-size: 16px;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  outline: none;
+}
+.field__input:focus,
+.field__select:focus { border-color: var(--accent); }
+.field__select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(255, 255, 255, .96);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23837e70' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+}
+.field__input.is-invalid,
+.field__select.is-invalid { border-color: #d9534f; }
+.field__error {
+  display: none;
+  margin: 6px 2px 0;
+  font-size: 11px;
+  color: #f0b8b6;
+  letter-spacing: .5px;
+}
+.field.has-error .field__error { display: block; }
+
+.reserve__submit {
+  width: 100%;
+  background: var(--accent);
+  color: #2a2310;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
+  padding: 16px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+}
+.reserve__submit[disabled] { opacity: .6; cursor: default; }
+.reserve__note {
+  font-size: 11px;
+  line-height: 1.8;
+  color: rgba(241, 236, 220, .55);
+  margin: 16px auto 0;
+  max-width: 320px;
+}
+.reserve__status {
+  max-width: 360px;
+  margin: 16px auto 0;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+  display: none;
+}
+.reserve__status.is-shown { display: block; }
+.reserve__status--ok { color: #cfe3bf; }
+.reserve__status--err { color: #f0b8b6; }
+.reserve__credit {
+  margin-top: 44px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(241, 236, 220, .15);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(241, 236, 220, .5);
+}
+
+/* =========================================================
+   9. STICKY CTA
+   ========================================================= */
+.sticky-cta {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: rgba(28, 46, 30, .94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 18px 14px;
+  border-top: 1px solid rgba(241, 236, 220, .14);
+  /* 初期は隠しておき、少しスクロールしたら現れる（main.js が is-visible を付与） */
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .35s ease, opacity .35s ease;
+}
+.sticky-cta.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.sticky-cta__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.sticky-cta__label {
+  font-size: 10px;
+  color: rgba(241, 236, 220, .6);
+  letter-spacing: 1px;
+}
+.sticky-cta__price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: #f1ecdc;
+}
+.sticky-cta__price small {
+  font-size: 11px;
+  color: rgba(241, 236, 220, .6);
+}
+.sticky-cta__btn {
+  background: var(--accent);
+  color: #2a2310;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 13px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+}
+
+/* =========================================================
+   Image placeholders (swap-ready)
+   実画像を assets/ に置けば自動で差し替わる。未配置時はラベル表示。
+   ========================================================= */
+.img-slot {
+  object-fit: cover;
+  background: rgba(0, 0, 0, .04);
+}
+.img-slot.is-missing {
+  position: relative;
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(131, 126, 112, .10) 0,
+      rgba(131, 126, 112, .10) 10px,
+      rgba(131, 126, 112, .04) 10px,
+      rgba(131, 126, 112, .04) 20px);
+}
+.img-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(131, 126, 112, .10) 0,
+      rgba(131, 126, 112, .10) 10px,
+      rgba(131, 126, 112, .04) 10px,
+      rgba(131, 126, 112, .04) 20px);
+}
+/* dark sections need a lighter placeholder treatment */
+.mainact .img-ph,
+.guest-box .img-ph {
+  color: rgba(241, 236, 220, .6);
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(241, 236, 220, .10) 0,
+      rgba(241, 236, 220, .10) 10px,
+      rgba(241, 236, 220, .03) 10px,
+      rgba(241, 236, 220, .03) 20px);
+}
+
+/* =========================================================
+   Honeypot (spam trap) — keep visually hidden
+   ========================================================= */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* =========================================================
+   Form flow pages (confirm.php / complete.php)
+   LP の RESERVATION 面（green-deep）に合わせた共通レイアウト
+   ========================================================= */
+.formpage {
+  background: var(--green-deep);
+  color: #f1ecdc;
+}
+.fp-wrap {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--green-deep);
+  box-shadow: 0 0 80px rgba(0, 0, 0, .35);
+  padding: 64px 30px 72px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.fp-label {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.fp-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  line-height: 1.7;
+  margin: 0 0 10px;
+  color: #fbf6e8;
+}
+.fp-lead {
+  font-size: 13.5px;
+  line-height: 2;
+  color: rgba(241, 236, 220, .8);
+  margin: 0 auto 30px;
+  max-width: 340px;
+  text-wrap: pretty;
+}
+
+/* confirm: review list */
+.confirm-list {
+  text-align: left;
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto 30px;
+  border-top: 1px solid rgba(241, 236, 220, .18);
+}
+.confirm-row {
+  display: flex;
+  gap: 14px;
+  padding: 15px 4px;
+  border-bottom: 1px solid rgba(241, 236, 220, .18);
+}
+.confirm-key {
+  flex: none;
+  width: 92px;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12.5px;
+  letter-spacing: 1px;
+  color: rgba(241, 236, 220, .65);
+}
+.confirm-val {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #f1ecdc;
+  word-break: break-word;
+}
+
+/* actions */
+.fp-actions {
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.fp-btn {
+  width: 100%;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
+  padding: 16px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.fp-btn--primary {
+  background: var(--accent);
+  color: #2a2310;
+}
+.fp-btn--ghost {
+  background: transparent;
+  color: rgba(241, 236, 220, .82);
+  border: 1px solid rgba(241, 236, 220, .3);
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 14px;
+  padding: 14px;
+}
+
+/* error list */
+.fp-errors {
+  text-align: left;
+  max-width: 360px;
+  width: 100%;
+  margin: 0 auto 28px;
+  padding: 18px 20px;
+  border: 1px solid rgba(217, 83, 79, .5);
+  border-radius: 12px;
+  background: rgba(217, 83, 79, .1);
+}
+.fp-errors li {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #f0b8b6;
+}
+
+/* thanks */
+.thanks-mark {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+.thanks-note {
+  font-size: 12.5px;
+  line-height: 2;
+  color: rgba(241, 236, 220, .6);
+  margin: 26px auto 0;
+  max-width: 320px;
+  text-wrap: pretty;
+}
+.fp-credit {
+  margin-top: auto;
+  padding-top: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(241, 236, 220, .45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__top, .hero__date, .hero__title, .hero__rule,
+  .hero__sub, .hero__venue, .hero__scroll {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .hero__scroll span { animation: none !important; }
+}
