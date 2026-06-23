@@ -7,13 +7,13 @@
 
 return [
     // 予約通知の送信先（主催・担当者）
-    'admin_email' => 'yoyaku260809@gmail.com',
+    'admin_email' => 'bookends.me@gmail.com,ken.manics@gmail.com',
     'admin_name'  => 'OSAKA TENDER WEEKENDERS 予約担当',
 
     // 送信元（From）。
     //  ★エックスサーバーで作成した「送信用メールボックス」のアドレスに変更してください。
     //    （独自ドメインのアドレスにすると SPF が通り、迷惑メール判定されにくくなります）
-    'from_email'  => 'no-reply@あなたのドメイン',   // ★要変更：作成済みの送信用アドレス
+    'from_email'  => 'info@bookends.me',   // ★要変更：作成済みの送信用アドレス
     'from_name'   => 'OSAKA TENDER WEEKENDERS',
 
     // メール件名
@@ -34,12 +34,12 @@ return [
     //   ・username … 送信用メールアドレス全体（例 no-reply@ドメイン）
     //   ・password … そのメールアドレスのパスワード
     'smtp' => [
-        'host'       => 'svXXXX.xserver.jp',  // ★要変更：割当サーバー名
+        'host'       => 'sv13300.xserver.jp',  // ★要変更：割当サーバー名
         'port'       => 465,
         'encryption' => 'ssl',
         'auth'       => true,
-        'username'   => 'no-reply@あなたのドメイン', // ★要変更：from_email と同じ送信用アドレス
-        'password'   => '',                          // ★要変更：メールアドレスのパスワード
+        'username'   => 'info@bookends.me', // ★要変更：from_email と同じ送信用アドレス
+        'password'   => 'Info1029',                          // ★要変更：メールアドレスのパスワード
         'timeout'    => 15,
     ],
 

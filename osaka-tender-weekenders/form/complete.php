@@ -71,5 +71,6 @@ render_head('ご予約ありがとうございます');
 <div class="fp-actions" style="margin-top:30px;">
   <a class="fp-btn fp-btn--ghost" href="../index.html">トップへ戻る</a>
 </div>
+<script>try { sessionStorage.removeItem('otw_reserve_v1'); } catch (e) {}</script>
 <?php
 render_foot();

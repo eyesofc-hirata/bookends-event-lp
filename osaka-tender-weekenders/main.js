@@ -211,11 +211,44 @@
       return ok;
     }
 
+    // --- 入力値の保持（確認画面から戻っても消えないように sessionStorage に保存）---
+    // ふりがな欄は autocomplete=off によりブラウザの戻る復元が効かないため、ここで補完する。
+    const STORE_KEY = 'otw_reserve_v1';
+    const STORE_FIELDS = ['name', 'kana', 'qty', 'email', 'tel'];
+
+    function saveState() {
+      try {
+        const data = {};
+        STORE_FIELDS.forEach(function (n) {
+          const el = form.elements[n];
+          if (el) data[n] = el.value;
+        });
+        sessionStorage.setItem(STORE_KEY, JSON.stringify(data));
+      } catch (e) { /* sessionStorage 不可環境は無視 */ }
+    }
+
+    function restoreState() {
+      try {
+        const raw = sessionStorage.getItem(STORE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        STORE_FIELDS.forEach(function (n) {
+          const el = form.elements[n];
+          // ブラウザが既に復元した値は尊重し、空のものだけ補完する
+          if (el && data[n] != null && el.value === '') el.value = data[n];
+        });
+      } catch (e) { /* noop */ }
+    }
+
+    restoreState();
+
     // live-clear errors as the user fixes them
     form.querySelectorAll('input, select').forEach(function (input) {
       input.addEventListener('input', function () {
+        saveState();
         if (input.classList.contains('is-invalid')) validateField(input);
       });
+      input.addEventListener('change', saveState);
       input.addEventListener('blur', function () { validateField(input); });
     });
 
@@ -236,6 +269,7 @@
         if (firstBad) firstBad.focus();
         return;
       }
+      saveState(); // 確認画面へ進む前に最新値を保存（戻った時に復元）
       // 妥当なら preventDefault せず、form/confirm.php へネイティブ送信
     });
 

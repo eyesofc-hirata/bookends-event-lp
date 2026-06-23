@@ -213,7 +213,8 @@ body {
   line-height: 2.1;
   color: rgba(241, 236, 220, .82);
   margin: 0;
-  text-wrap: pretty;
+  text-align: justify;
+  text-justify: distribute;
 }
 .mainact__bio p { margin: 0 0 1.2em; }
 .mainact__bio p:last-child { margin-bottom: 0; }
@@ -277,7 +278,8 @@ body {
   line-height: 1.9;
   color: rgba(241, 236, 220, .78);
   margin: 0;
-  text-wrap: pretty;
+  text-align: justify;
+  text-justify: distribute;
 }
 
 /* ---- SNS buttons ---- */
@@ -354,7 +356,8 @@ body {
   line-height: 2;
   color: var(--muted);
   margin: 0;
-  text-wrap: pretty;
+  text-align: justify;
+  text-justify: distribute;
 }
 
 /* =========================================================
