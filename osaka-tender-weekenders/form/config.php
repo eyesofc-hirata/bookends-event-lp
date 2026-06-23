@@ -7,7 +7,7 @@
 
 return [
     // 予約通知の送信先（主催・担当者）
-    'admin_email' => 'bookends.me@gmail.com,ken.manics@gmail.com',
+    'admin_email' => 'info@bookends.me',
     'admin_name'  => 'OSAKA TENDER WEEKENDERS 予約担当',
 
     // 送信元（From）。
