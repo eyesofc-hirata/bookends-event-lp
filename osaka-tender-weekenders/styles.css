@@ -330,6 +330,15 @@ body {
   border-color: var(--primary);
   color: var(--primary);
 }
+/* 西村哲也ボックス内（コンパクトに） */
+.guest-box__sns {
+  margin-top: 13px;
+  gap: 9px;
+}
+.guest-box__sns.sns--dark .sns__btn {
+  width: 36px;
+  height: 36px;
+}
 
 /* =========================================================
    4. GUEST ACTS
