@@ -218,13 +218,15 @@ body {
 .mainact__bio p:last-child { margin-bottom: 0; }
 
 .mainact__with {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
+  padding: 16px;
   border: 1px solid rgba(241, 236, 220, .18);
   border-radius: 10px;
   margin-top: 16px;
+}
+.mainact__with-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .mainact__with-label {
   font-family: 'Shippori Mincho', serif;
@@ -235,6 +237,14 @@ body {
 .mainact__with-band {
   font-size: 13px;
   color: rgba(241, 236, 220, .85);
+}
+.mainact__with-bio {
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(241, 236, 220, .78);
+  margin: 10px 0 0;
+  text-align: justify;
+  text-justify: distribute;
 }
 
 .guest-box {
